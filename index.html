@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday!</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #ffe6e6;
+      font-family: Arial, sans-serif;
+      position: relative;
+      height: 100vh;
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 5s linear infinite;
+    }
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart:before {
+      top: -25px;
+      left: 0;
+    }
+    .heart:after {
+      left: 25px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(300deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Character Styles */
+    .character {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 300px;
+      background-image: url('website bd/piclumen-1741793867786.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 5px solid #e03131;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Text Bubble */
+    .bubble {
+      position: relative;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      border: 2px solid #e93030;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      color: #0a0a0a;
+      opacity: 0;
+      animation: popIn 1s ease-out forwards;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Play Button */
+    .play-button {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: rgb(252, 252, 252);
+      color: rgb(7, 7, 7);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .play-button:hover {
+      background-color: rgb(226, 223, 223);
+    }
+
+    /* Hidden YouTube Player */
+    #spotify-player {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Play Button -->
+  <button class="play-button" onclick="playSong()">🎶 Play Birthday Song</button>
+
+  <!-- Character Container -->
+  <div class="character">
+    <div class="bubble">Happy Birthday my Tarek!</div>
+  </div>
+
+  <!-- Hidden Spotify Player -->
+  <iframe id="spotify-player" width="300" height="380" src="https://open.spotify.com/embed/track/3sUsVnuTtdSQIpChj21xZd?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+  <!-- JavaScript -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 3) + 's';
+      heart.style.opacity = Math.random();
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 300);
+
+    function playSong() {
+      let player = document.getElementById("spotify-player");
+      player.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
